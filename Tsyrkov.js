@@ -1,8 +1,10 @@
-// function exa1 () {
+// const Aboba1 = "Hi"
+// console.log(Aboba1)
+
+// hello2('Aboba')
+// function hello2(name) {
+//   console.log(name)
 // }
 
-// const exa2 = function() {
-// }
-
-// const exa3 = () => {
+// const exxx3 = () => {
 // }
