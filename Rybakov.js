@@ -1,0 +1,9 @@
+//1) классические
+function sum(a, b) { return a + b; }
+console.log(sum(3, 5)); // 8
+//2)Стрелочные... грубо говоря те которые используют стрелки типо такого: =>
+    const multiply = (a, b) => a * b;
+console.log(multiply(4, 5));
+//3) Функция выражение Функция создаётся как значение и присваивается переменной. Пример:
+const greet = function(name) { return `Привет, ${name}!`; };
+console.log(greet("Алекс")); // Привет, Алекс!
