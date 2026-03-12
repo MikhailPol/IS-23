@@ -1,5 +1,5 @@
-function example1 (a, b) {
-console.log(a * b)
+function example1 () {
+
 }
 
 const example2 = function() {
