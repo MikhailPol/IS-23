@@ -1,5 +1,5 @@
 function alert_messege (messege) {
-    if (typeof messege === "string" && isNaN(Number(messege))) {
+    if (typeof messege === "string" && isNaN(messege)) {
         alert(messege)
     }
     else {
