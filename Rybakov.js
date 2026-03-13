@@ -11,3 +11,20 @@ console.log(greet("Алекс")); // Привет, Алекс!
 
 //Даю коментарий. Сотрите этот файл под ноль. удалите мой код. мне больно видеть это...
 //Короче поскольку код не удалил я.... Хз займусь наукой. Буду скрещивать котов и создам кота ядерку
+
+function returnText(tex){
+    if (typeof tex === 'string'){
+        return tex.toUpperCase();}
+        return ""
+}
+function sum(a,b){
+    if (typeof a === 'number' && typeof b === 'number'){
+        return a + b
+    }
+    return "";
+}
+//Примеры
+console.log (returnText("asa"))
+console.log (returnText(1))
+console.log (sum(1,"dio"))
+console.log (sum(4,5))  
