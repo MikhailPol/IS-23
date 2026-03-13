@@ -92,10 +92,11 @@ class NodeIterator {
 
     data(){return this.node.value;}
 
-    next(){this.node = this.node.next}
+    next(){this.node = this.node.next;}
 
-    prev(){this.node = this.node.prev}
+    prev(){this.node = this.node.prev;}
 
+    is_end(){return this.node === null;}
 }
 
 
@@ -148,7 +149,7 @@ class List {
             this.tail.next = null;
         }
         --this.#length;
-        return new NodeIterator(del_node);
+        return del_node.value;
     }
     
     pop_front(){
@@ -162,7 +163,7 @@ class List {
             this.head.prev = null;
         }
         --this.#length;
-        return new NodeIterator(del_node);
+        return del_node.value;
     }
 
     get length(){
@@ -182,6 +183,7 @@ class List {
     insert_by_iterator(iter, value){
         if (!(iter instanceof NodeIterator)) {
             console.log("Это не наш итератор!");
+            return;
         }
         let new_node = new Node(value);
         new_node.next = iter.node;
@@ -193,9 +195,6 @@ class List {
     }
 
     begin(){return new NodeIterator(this.head)}
-
-    end(){return new NodeIterator(this.tail)}
-
 }
 
 
@@ -207,10 +206,10 @@ function main() {
     l1.push_back(3);
     l1.push_front(0);
     l1.print(); // 0 1 2 3
-    console.log(l1.pop_back().data()); // 3
+    console.log(l1.pop_back()); // 3
     l1.print(); // 0 1 2
     console.log(l1.length); // 3
-    console.log(l1.pop_front().data()); // 0
+    console.log(l1.pop_front()); // 0
     l1.print(); // 1 2
     l1.push_back(3);
     l1.push_back(4);
@@ -225,6 +224,18 @@ function main() {
     l1.insert_by_iterator(it1, 999);
     l1.print(); // 1 999 2 3 4
     console.log(l1.length); // 5
+
+    let it2 = l1.begin();
+    while (!it2.is_end()) {
+        console.log("-> " + it2.data());
+        it2.next();
+    }
+    // -> 1
+    // -> 999
+    // -> 2
+    // -> 3
+    // -> 4
+
 }
 
 main()
