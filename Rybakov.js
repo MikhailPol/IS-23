@@ -11,3 +11,22 @@ console.log(greet("Алекс")); // Привет, Алекс!
 
 //Даю коментарий. Сотрите этот файл под ноль. удалите мой код. мне больно видеть это...
 //Короче поскольку код не удалил я.... Хз займусь наукой. Буду скрещивать котов и создам кота ядерку
+
+function UpperCase(tex){
+    if (typeof tex === 'string' && !tex.match(/[0-9]/)){
+        return tex.toUpperCase();}
+        return ""
+}
+function sum(a,b){
+    if (typeof a === 'number' && typeof b === 'number' && !isNaN(a) && !isNaN(b)){
+        return a + b
+    }
+    return "";
+}
+//Примеры
+console.log (UpperCase("asa"))
+console.log (UpperCase("asa123"))
+console.log (UpperCase(1))
+console.log (sum(1,"dio"))
+console.log (sum(NaN,5))  
+console.log (sum(1,5))  
