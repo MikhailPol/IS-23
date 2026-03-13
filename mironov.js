@@ -15,8 +15,8 @@ console.log(convert_string("dvb")); // DVB
 function sum_int(int1, int2){
     "Функция, принимающая на вход 2 числа и возвращает сумму этих чисел."
     "Если хотя бы одно не число - ничего не должно возвращаться."
-    if (!(typeof int1 === 'number' && !Number.isNaN(int1) && Number.isFinite(int1))){return;}
-    if (!(typeof int2 === 'number' && !Number.isNaN(int2) && Number.isFinite(int2))){return;}
+    if (!(typeof int1 === 'number' && Number.isFinite(int1))){return;}
+    if (!(typeof int2 === 'number' && Number.isFinite(int2))){return;}
     return int1 + int2;
 }
 
