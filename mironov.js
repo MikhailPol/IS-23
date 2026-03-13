@@ -84,6 +84,22 @@ class Node {
 }
 
 
+
+class NodeIterator {
+    constructor(node) {
+        this.node = node;
+    }
+
+    data(){return this.node.value;}
+
+    next(){this.node = this.node.next}
+
+    prev(){this.node = this.node.prev}
+
+}
+
+
+
 "Двусвязный список (минимальная реализация)"
 class List {
     #length = 0;
@@ -108,7 +124,7 @@ class List {
     }
 
     push_front(value){
-        const new_node = new Node(value);
+        let new_node = new Node(value);
         if(!this.head){
             this.head = new_node;
             this.tail = new_node;
@@ -123,7 +139,7 @@ class List {
     
     pop_back(){
         if(!this.head){return null;}
-        const del_node = this.tail;
+        let del_node = this.tail;
         if(this.head === this.tail){
             this.head = null;
             this.tail = null;
@@ -132,12 +148,12 @@ class List {
             this.tail.next = null;
         }
         --this.#length;
-        return del_node.value;
+        return new NodeIterator(del_node);
     }
     
     pop_front(){
         if(!this.head){return null;}
-        const del_node = this.head;
+        let del_node = this.head;
         if(this.head === this.tail){
             this.head = null;
             this.tail = null;
@@ -146,10 +162,10 @@ class List {
             this.head.prev = null;
         }
         --this.#length;
-        return del_node.value;
+        return new NodeIterator(del_node);
     }
 
-    length(){
+    get length(){
         return this.#length;
     }
 
@@ -162,6 +178,24 @@ class List {
         }
         console.log(res.join(' <-> '));
     }
+
+    insert_by_iterator(iter, value){
+        if (!(iter instanceof NodeIterator)) {
+            console.log("Это не наш итератор!");
+        }
+        let new_node = new Node(value);
+        new_node.next = iter.node;
+        new_node.prev = iter.node.prev;
+        iter.node.prev.next = new_node;
+        iter.node.prev = new_node;
+        ++this.#length;
+        return new NodeIterator(new_node);
+    }
+
+    begin(){return new NodeIterator(this.head)}
+
+    end(){return new NodeIterator(this.tail)}
+
 }
 
 
@@ -173,11 +207,24 @@ function main() {
     l1.push_back(3);
     l1.push_front(0);
     l1.print(); // 0 1 2 3
-    console.log(l1.pop_back()); // 3
+    console.log(l1.pop_back().data()); // 3
     l1.print(); // 0 1 2
-    console.log(l1.length()); // 3
-    console.log(l1.pop_front()); // 0
+    console.log(l1.length); // 3
+    console.log(l1.pop_front().data()); // 0
     l1.print(); // 1 2
+    l1.push_back(3);
+    l1.push_back(4);
+    l1.print(); // 1 2 3 4
+
+
+    let it1 = l1.begin();
+    console.log(it1.data()); // 1
+    it1.next();
+    console.log(it1.data()); // 2
+
+    l1.insert_by_iterator(it1, 999);
+    l1.print(); // 1 999 2 3 4
+    console.log(l1.length); // 5
 }
 
 main()
