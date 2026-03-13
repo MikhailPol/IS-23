@@ -18,7 +18,7 @@ function UpperCase(tex){
         return ""
 }
 function sum(a,b){
-    if (typeof a === 'number' && typeof b === 'number' && a === NaN && b === NaN){
+    if (typeof a === 'number' && typeof b === 'number' && !isNaN(a) && !isNaN(b)){
         return a + b
     }
     return "";
@@ -28,4 +28,5 @@ console.log (UpperCase("asa"))
 console.log (UpperCase("asa123"))
 console.log (UpperCase(1))
 console.log (sum(1,"dio"))
+console.log (sum(NaN,5))  
 console.log (sum(1,5))  
