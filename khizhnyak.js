@@ -1,14 +1,15 @@
-// Классическая функция (Function Declaration)
-function sayHi(){
-    console.log('Hello');
+function onlyString(input){
+    if (typeof input !== 'string') return;
+    if (/\d/.test(input)) return;
+    return input.toUpperCase();
 };
-sayHi();
-// Выведет Hello
 
-// Стрелочныя функция. Идёт в одну линию и со знаком "=>"
-const sum = (p1, p2) =>{ return p1 + p2};
-sum(2, 3); // Выведет 5
+function sumOfNumbers(a, b){
+    if (typeof a !== 'number' || typeof b !== 'number') return;
+    return a+b;
+};
 
-// Функция выражение Функция создаётся как значение и присваивается переменной. Пример:
-const greet = function(age) { return `Привет, мне ${age} лет!`; };
-console.log(greet(18)); // Привет, мне 18 лет!
+console.log(onlyString('Привет мир'));
+console.log(onlyString(123));
+console.log(sumOfNumbers('sadsadasd', 'asfsaf'));
+console.log(sumOfNumbers(2, 3));
