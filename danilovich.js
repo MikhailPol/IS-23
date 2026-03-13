@@ -1,7 +1,6 @@
 function UpperCase_messege (messege) {
-    let text = messege
     if (typeof messege === "string" && isNaN(messege)) {
-        console.log(text.toUpperCase(messege))
+        console.log(messege.toUpperCase())
     }
     else {
         console.log("error")
