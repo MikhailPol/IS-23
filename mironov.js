@@ -7,9 +7,9 @@ function convert_string(string) {
     return string.toUpperCase();
 }
 
-console.log(convert_string(10)); // undefined
-console.log(convert_string("dvb89")); // undefined
-console.log(convert_string("dvb")); // DVB
+// console.log(convert_string(10)); // undefined
+// console.log(convert_string("dvb89")); // undefined
+// console.log(convert_string("dvb")); // DVB
 
 
 function sum_int(int1, int2){
@@ -21,11 +21,11 @@ function sum_int(int1, int2){
 }
 
 
-console.log(sum_int(10, 20)); // 30
-console.log(sum_int(2, 3.6)); // 5.6 
-console.log(sum_int("jnd", 8)); // undefined
-console.log(sum_int(NaN, 8)); // undefined
-console.log(sum_int(Infinity, 8)); // undefined
+// console.log(sum_int(10, 20)); // 30
+// console.log(sum_int(2, 3.6)); // 5.6 
+// console.log(sum_int("jnd", 8)); // undefined
+// console.log(sum_int(NaN, 8)); // undefined
+// console.log(sum_int(Infinity, 8)); // undefined
 
 
 
@@ -66,10 +66,118 @@ let M6 = "fwwfg"; // undefined и лог что не массив
 let M7 = "fwwfg"; // undefined и лог что не массив
 
 
-console.log(hoar_sort(M1));
-console.log(hoar_sort(M2));
-console.log(hoar_sort(M3));
-console.log(hoar_sort(M4));
-console.log(hoar_sort(M5));
-console.log(hoar_sort(M6));
-console.log(hoar_sort(M7));
+// console.log(hoar_sort(M1));
+// console.log(hoar_sort(M2));
+// console.log(hoar_sort(M3));
+// console.log(hoar_sort(M4));
+// console.log(hoar_sort(M5));
+// console.log(hoar_sort(M6));
+// console.log(hoar_sort(M7));
+
+
+class Node {
+    constructor(data) {
+        this.value = data;
+        this.next = null;
+        this.prev = null;
+    }
+}
+
+
+"Двусвязный список (минимальная реализация)"
+class List {
+    #length = 0;
+
+    constructor() {
+        this.head = null;
+        this.tail = null;
+    }
+
+    push_back(value){
+        const new_node = new Node(value);
+        if(!this.head){
+            this.head = new_node;
+            this.tail = new_node;
+        } else {
+            this.tail.next = new_node;
+            new_node.prev = this.tail;
+            this.tail = new_node;
+        }
+        ++this.#length;
+        return this;
+    }
+
+    push_front(value){
+        const new_node = new Node(value);
+        if(!this.head){
+            this.head = new_node;
+            this.tail = new_node;
+        } else {
+            this.head.prev = new_node;
+            new_node.next = this.head;
+            this.head = new_node;
+        }
+        ++this.#length;
+        return this;
+    }
+    
+    pop_back(){
+        if(!this.head){return null;}
+        const del_node = this.tail;
+        if(this.head === this.tail){
+            this.head = null;
+            this.tail = null;
+        } else {
+            this.tail = this.tail.prev;
+            this.tail.next = null;
+        }
+        --this.#length;
+        return del_node.value;
+    }
+    
+    pop_front(){
+        if(!this.head){return null;}
+        const del_node = this.head;
+        if(this.head === this.tail){
+            this.head = null;
+            this.tail = null;
+        } else {
+            this.head = this.head.next;
+            this.head.prev = null;
+        }
+        --this.#length;
+        return del_node.value;
+    }
+
+    length(){
+        return this.#length;
+    }
+
+    print(){
+        let res = [];
+        let current = this.head;
+        while(current){
+            res.push(current.value);
+            current = current.next;
+        }
+        console.log(res.join(' <-> '));
+    }
+}
+
+
+
+function main() {
+    let l1 = new List();
+    l1.push_back(1);
+    l1.push_back(2);
+    l1.push_back(3);
+    l1.push_front(0);
+    l1.print(); // 0 1 2 3
+    console.log(l1.pop_back()); // 3
+    l1.print(); // 0 1 2
+    console.log(l1.length()); // 3
+    console.log(l1.pop_front()); // 0
+    l1.print(); // 1 2
+}
+
+main()
