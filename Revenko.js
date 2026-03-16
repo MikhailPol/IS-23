@@ -2,28 +2,25 @@
 // Функция, принимающая на вход 2 и возвращает сумму этих чисел. Если хотя бы одно не число - ничего не должно возвращаться.
 // Следите за названием функций и переменных, и проверяйте результат выполнения своего кода перед отправкой.
 // // Все изменения делайте в своих ветках.
-
 // задание 1
-function UP(str) {
-  if (typeof str !== "string") {
-    return str;
-  }
-  for (let i = 0; i < str.length; i++) {
-    if (!isNaN(parseInt(str[i])) && str[i] !== " ") {
-      return str;
+function UpperCase(str) {
+    if (  typeof str === 'string') {
+        return str.toUpperCase();    
     }
-
-    return str.toUpperCase();
-  }
+  return str;
 }
-console.log(UP("dfdfdfd"));
-console.log(UP[1234]);
-// задание2
+// задание 2
 function sum(a, b) {
-  if (typeof a !== "number" || typeof b !== "number") {
-    return;
+  if (
+    typeof a === "number" &&
+    typeof b === "number" &&
+    !isNaN(a) &&
+    !isNaN(b)
+  ) {
+    return a + b;
   }
-  return a + b;
+  return "ничего не вернулось";
 }
+console.log(UpperCase('gg'));
 console.log(sum(2, "r"));
-console.log(sum(10, 11));
+console.log(sum(10, 10));
