@@ -12,11 +12,11 @@ console.log(string(null));
 
 // Вторая функция:
 function sum(a, b) {
-    if (typeof a === 'number' && typeof b === 'number' && Number.isFinite(a) && Number.isFinite(b)) {
-        return a + b;
-    }
+    if (!(typeof a === 'number' && Number.isFinite(a))){return;}
+    if (!(typeof b === 'number' && Number.isFinite(b))){return;}
+    return a + b;
 }
 console.log(sum(5, 10));
 console.log(sum(5, "10"));
-console.log(sum("a", 10));
+console.log(sum(5, "abc"));
 console.log(sum(5, Infinity));
